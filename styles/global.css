@@ -1,0 +1,165 @@
+header.lp-header {
+  padding: 50px 15px 70px 15px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+nav.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.navigation div.hamburger-menu {
+  margin: 0 0 0 30px;
+  display: none;
+}
+
+span#hamburger {
+  width: 30px;
+  height: 2px;
+  background: var(--color-red);
+  display: block;
+  position: relative;
+  z-index: 5;
+  display: none;
+}
+
+span#hamburger::before {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: var(--color-red);
+  position: absolute;
+  top: -8px;
+  display: block;
+  transition: all ease-in-out 0.2s;
+}
+
+span#hamburger::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: var(--color-red);
+  position: absolute;
+  top: +8px;
+  display: block;
+  transition: all ease-in-out 0.2s;
+}
+
+nav.navigation img {
+  max-width: 250px;
+  height: 100%;
+  width: clamp(180px, 170px + 5vw, 250px);
+}
+
+div.nav-links {
+  margin-left: auto;
+}
+
+nav.navigation ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav.navigation li {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+div.nav-links a {
+  color: var(--color-black);
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+div.nav-links a:hover {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+div.nav-links a.selected {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+/* Section Hero */
+
+section.hero {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding: 0 15px;
+  min-height: 500px;
+}
+
+section.hero img {
+  display: block;
+  padding: 0;
+  width: 150%;
+  min-height: 100%;
+  object-fit: cover;
+  border-radius: 0 15px 15px 0;
+}
+
+div.wrapper-text {
+  position: relative;
+  min-width: 510px;
+  padding: 50px 55px 70px 55px;
+  background: var(--color-black-light);
+  color: var(--color-white);
+  line-height: 1.3;
+  width: 1rem;
+  border-radius: 15px 0 0 15px;
+}
+
+h1.main-title {
+  font-size: clamp(30px, 30px + 5vw, 100px);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+p.teaser-text {
+  margin-top: 80px;
+  font-size: 24px;
+}
+
+div.wrapper-text button {
+  margin-top: 70px;
+}
+
+button.inscription-btns {
+  padding: 10px 25px;
+  font-size: 25px;
+  font-weight: 500;
+  background: var(--color-red);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  transition: ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+button.inscription-btns.mobile {
+  display: none;
+}
+
+footer {
+  padding: 65px 15px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+p.footer-copyright {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-red);
+}
