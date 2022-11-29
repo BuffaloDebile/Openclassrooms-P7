@@ -2,8 +2,9 @@ html,
 *,
 *::before,
 *::after {
-  --light-grey: #e7e7e7;
-  --dark-grey: #c7bebe;
+  --dark-petit-plats: #151515;
+  --light-grey-petit-plats: #e7e7e7;
+  --dark-grey-petit-plats: #c7bebe;
   --blue-petit-plats: #3282f7;
   --green-petit-plats: #68d9a4;
   --red-petit-plats: #ed6454;
