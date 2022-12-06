@@ -56,6 +56,7 @@ section.searchbar {
 
 .search__button {
   position: absolute;
+  cursor: pointer;
   padding: 0;
   height: 100%;
   border: none;
@@ -64,9 +65,13 @@ section.searchbar {
   right: 0rem;
 }
 
+.search__button:hover {
+  opacity: 0.5;
+}
+
 .search__loupe {
-  height: 2rem;
-  width: 2rem;
+  height: 2.2rem;
+  width: 2.2rem;
 }
 
 /* FILTERS */
@@ -84,11 +89,33 @@ section.filter {
   border-radius: 0.5rem;
   cursor: pointer;
   display: flex;
+  position: relative;
   justify-content: start;
   align-items: center;
   width: 17rem;
-  height: 6rem;
+  height: 4.5rem;
   padding: 0 0.5rem 0 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.filter__selector:hover {
+  opacity: 0.8;
+}
+
+.filter__selector.open {
+  width: 75%;
+}
+
+.filter__selector:hover.open {
+  opacity: 1;
+}
+
+.filter__selector.open .filter__arrow::before {
+  transform: rotate(-45deg);
+}
+
+.filter__selector.open .filter__arrow::after {
+  transform: rotate(45deg);
 }
 
 .filter__arrow {
@@ -101,7 +128,7 @@ section.filter {
   content: '';
   position: absolute;
   bottom: 0px;
-  width: 0.25rem;
+  width: 0.2rem;
   height: 1rem;
   transition: all 0.5s;
   right: 2rem;
@@ -114,7 +141,7 @@ section.filter {
   content: '';
   position: absolute;
   bottom: 0px;
-  width: 0.25rem;
+  width: 0.2rem;
   height: 1rem;
   transition: all 0.5s;
   right: 1.35rem;
@@ -136,14 +163,74 @@ section.filter {
 
 .filter__input {
   background: transparent;
+  outline: none;
   padding: 0 2rem;
   width: 100%;
   height: 100%;
   border: none;
   color: white;
-  font-size: 1.6rem;
+  font-size: var(--text-2xl);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
+}
+
+.filter__input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.filter__showList {
+  display: none;
+}
+
+.filter__showList--blue {
+  background: var(--blue-petit-plats);
+}
+
+.filter__showList--green {
+  background: var(--green-petit-plats);
+}
+
+.filter__showList--red {
+  background: var(--red-petit-plats);
+}
+
+.filter__selector.open .filter__showList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  position: absolute;
+  top: 41px;
+  color: #fff;
+  width: 100%;
+  max-height: 360px;
+  overflow: hidden;
+  padding: 10px 0 10px 0;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.filter__listOption {
+  cursor: pointer;
+  padding: 4px 0 4px 20px;
+  font-size: var(--text-2xl);
+  transition: opacity 0.1s ease-out;
+}
+
+.filter__listOption:hover {
+  opacity: 0.5;
+}
+
+.filter__listOption::after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: #fff;
+  transition: 300ms;
+}
+
+.filter__listOption:hover::after {
+  width: 15%;
 }
