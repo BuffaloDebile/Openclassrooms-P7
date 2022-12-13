@@ -11,7 +11,7 @@ export function handleOpenCloseFilters() {
   closeFilterBtn[1].addEventListener('click', closeFilter);
   closeFilterBtn[2].addEventListener('click', closeFilter);
 
-  function openFilter() {
+  function openFilter(e) {
     filters.forEach((filter) => filter.classList.remove('open'));
 
     filtersInputs.forEach((input) => {
