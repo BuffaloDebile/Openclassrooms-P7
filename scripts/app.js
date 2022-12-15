@@ -16,5 +16,3 @@ filterElement.forEach((element) => {
 closeTagElement.forEach((closeCross) => {
   closeCross.addEventListener('click', removeTag);
 });
-
-

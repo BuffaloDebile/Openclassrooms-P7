@@ -1,6 +1,8 @@
 import { recipes } from '../assets/recipes.js';
 
 export let recipesArray = Object.entries(recipes);
+console.log(recipesArray);
+console.log(recipes);
 
 recipesArray.forEach((recipe) => {
   let idRecipe = recipe[1].id;
@@ -33,4 +35,17 @@ recipesArray.forEach((recipe) => {
       this.ustensilesRecipe = ustensilesRecipe;
     }
   }
+
+  const myrecipe = new Recipe(
+    idRecipe,
+    nameRecipe,
+    personneRecipe,
+    timeRecipe,
+    ingredientsRecipe,
+    descriptionRecipe,
+    appareilsRecipe,
+    ustensilesRecipe,
+  );
+
+  console.log(myrecipe);
 });
