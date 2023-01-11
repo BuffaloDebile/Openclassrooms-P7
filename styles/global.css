@@ -376,7 +376,7 @@ section.cards__container {
   width: 50%;
   font-size: 1.2rem;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  /* -webkit-line-clamp: 6; */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

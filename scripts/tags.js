@@ -49,8 +49,6 @@ export function removeTag() {
   const tag = this;
   const tagText = tag.firstElementChild.innerText;
 
-  console.log(tag.childNodes[1]);
-
   const blueTag = 'tags__item--blue';
   const greenTag = 'tags__item--green';
   const redTag = 'tags__item--red';
