@@ -7,6 +7,7 @@ const closeTagElement = document.querySelectorAll('.tags__close');
 
 handleOpenCloseFilters();
 
+
 // EVENT LISTENERS
 
 filterElement.forEach((element) => {

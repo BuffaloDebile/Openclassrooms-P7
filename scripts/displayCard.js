@@ -1,5 +1,5 @@
 export function createRecipeCard(array) {
-  array.forEach((recipe, indexRecipe) => {
+  array.forEach((recipe) => {
     const cardContainer = document.querySelector('.cards__container');
     const card = document.createElement('article');
     card.className = 'card';
