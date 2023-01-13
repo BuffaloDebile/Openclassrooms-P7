@@ -1,4 +1,5 @@
 import { recipesArray } from './factory.js';
+import { removeDuplicateFromArray } from './utils.js';
 
 export function addTag() {
   const tagList = document.querySelector('.tags');
@@ -80,38 +81,45 @@ function createTagElements(recipes) {
   const applianceList = document.querySelector('.filter__showList--green');
   const utensilsList = document.querySelector('.filter__showList--red');
 
+  let uniqueItems = [];
+  let uniqueAppliances = [];
+  let uniqueIngredients = [];
+
   recipes.forEach((recipe) => {
     recipe = recipe[0];
 
-    var existingIngredients = [];
-    recipe.ingredients.forEach(function (ingredient) {
-      if (!existingIngredients.includes(ingredient.ingredient)) {
-        var ingredientItem = document.createElement('li');
-        ingredientItem.classList.add('filter__listOption');
-        ingredientItem.innerHTML = ingredient.ingredient;
-        ingredientsList.appendChild(ingredientItem);
-        existingIngredients.push(ingredient.ingredient);
+    recipe.ingredients.forEach((ingredient) => {
+      uniqueIngredients.sort();
+      // check if already exist to avoid duplicates
+      if (!uniqueIngredients.includes(ingredient.ingredient)) {
+        uniqueIngredients.push(ingredient.ingredient);
       }
     });
 
-    if (!existingIngredients.includes(recipe.appliance)) {
-      var applianceItem = document.createElement('li');
-      applianceItem.classList.add('filter__listOption');
-      applianceItem.innerHTML = recipe.appliance;
-      applianceList.appendChild(applianceItem);
-      existingIngredients.push(recipe.appliance);
-    }
+    uniqueIngredients.forEach((item) => {
+      const ingredientItem = document.createElement('li');
+      ingredientItem.classList.add('filter__listOption');
+      ingredientItem.innerHTML = item;
+      ingredientsList.appendChild(ingredientItem);
+    });
 
-    var existingUtensils = [];
+    recipe.appliance
+
+    const applianceItem = document.createElement('li');
+    applianceItem.classList.add('filter__listOption');
+    applianceItem.innerHTML = recipe.appliance;
+    uniqueItems.push(applianceItem);
+    // applianceList.appendChild(applianceItem);
+
     recipe.ustensils.forEach(function (utensil) {
-      if (!existingUtensils.includes(utensil)) {
-        var utensilItem = document.createElement('li');
-        utensilItem.classList.add('filter__listOption');
-        utensilItem.innerHTML = utensil;
-        utensilsList.appendChild(utensilItem);
-        existingUtensils.push(utensil);
-      }
+      const utensilItem = document.createElement('li');
+      utensilItem.classList.add('filter__listOption');
+      utensilItem.innerHTML = utensil;
+      uniqueAppliances.push(utensilItem);
+      // utensilsList.appendChild(utensilItem);
     });
+
+    // console.log(uniqueIngredients, uniqueItems, uniqueAppliances);
   });
 }
 
