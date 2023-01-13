@@ -1,3 +1,5 @@
+import { getFoodImage } from './utils.js';
+
 export function createRecipeCard(array) {
   array.forEach((recipe) => {
     const cardContainer = document.querySelector('.cards__container');
@@ -38,6 +40,11 @@ export function createRecipeCard(array) {
     </div>
   </a>
     `;
+
+    getFoodImage().then((imageUrl) => {
+      card.querySelector('img').src = imageUrl;
+    });
+
     cardContainer.appendChild(card);
   });
 }

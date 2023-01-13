@@ -1,6 +1,5 @@
 import { recipesArray } from './factory.js';
-import { removeDuplicateFromArray } from './utils.js';
-
+import { getFoodImage } from './utils.js';
 export function addTag() {
   const tagList = document.querySelector('.tags');
   const clickedTagName = this.innerText;
@@ -103,7 +102,7 @@ function createTagElements(recipes) {
       ingredientsList.appendChild(ingredientItem);
     });
 
-    recipe.appliance
+    recipe.appliance;
 
     const applianceItem = document.createElement('li');
     applianceItem.classList.add('filter__listOption');
