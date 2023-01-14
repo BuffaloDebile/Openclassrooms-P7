@@ -1,3 +1,4 @@
+// GET A RANDOM FOOD IMAGE
 export async function getFoodImage() {
   try {
     const response = await fetch(
@@ -10,3 +11,7 @@ export async function getFoodImage() {
   }
 }
 
+// CAPITALISE THE FIRST LETTER OF WORDs
+export function capitalizeWords(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}

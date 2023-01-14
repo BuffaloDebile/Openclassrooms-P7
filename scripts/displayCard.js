@@ -41,9 +41,9 @@ export function createRecipeCard(array) {
   </a>
     `;
 
-    getFoodImage().then((imageUrl) => {
-      card.querySelector('img').src = imageUrl;
-    });
+    // getFoodImage().then((imageUrl) => {
+    //   card.querySelector('img').src = imageUrl;
+    // });
 
     cardContainer.appendChild(card);
   });
