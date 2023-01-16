@@ -5,6 +5,10 @@ let uniqueIngredients = [];
 let uniqueAppliances = [];
 let uniqueUstensils = [];
 
+let selectedIngredientTags = [];
+let selectedAppliancesTags = [];
+let selectedUstensilTags = [];
+
 export function addTag() {
   const tagList = document.querySelector('.tags');
   const clickedTagName = this.innerText;
@@ -19,11 +23,13 @@ export function addTag() {
       'ingredientsList',
       '.filter__showList--blue',
     );
+    selectedIngredientTags.push(clickedTagName);
   } else if (this.parentElement.classList.contains('filter__showList--red')) {
     color = 'red';
     uniqueUstensils.splice(uniqueUstensils.indexOf(clickedTagName), 1);
     uniqueUstensils.sort();
     updateTagList(uniqueUstensils, 'ustensilList', '.filter__showList--red');
+    selectedUstensilTags.push(clickedTagName);
   } else if (this.parentElement.classList.contains('filter__showList--green')) {
     color = 'green';
     uniqueAppliances.splice(uniqueAppliances.indexOf(clickedTagName), 1);
@@ -33,6 +39,7 @@ export function addTag() {
       'applianceList',
       '.filter__showList--green',
     );
+    selectedAppliancesTags.push(clickedTagName);
   } else {
     return;
   }
@@ -47,6 +54,12 @@ export function addTag() {
   tagList.appendChild(tag);
   tag.addEventListener('click', removeTag);
   this.remove();
+
+  console.log(
+    selectedIngredientTags,
+    selectedAppliancesTags,
+    selectedUstensilTags,
+  );
 }
 
 export function removeTag() {
@@ -58,16 +71,19 @@ export function removeTag() {
     list = document.querySelector('.filter__showList--blue');
     listItems = list.querySelectorAll('.filter__listOption');
     uniqueIngredients.push(tagText);
+    selectedIngredientTags.pop(tagText);
     uniqueIngredients.sort();
   } else if (tag.classList.contains('tags__item--green')) {
     list = document.querySelector('.filter__showList--green');
     listItems = list.querySelectorAll('.filter__listOption');
     uniqueAppliances.push(tagText);
+    selectedAppliancesTags.pop(tagText);
     uniqueAppliances.sort();
   } else if (tag.classList.contains('tags__item--red')) {
     list = document.querySelector('.filter__showList--red');
     listItems = list.querySelectorAll('.filter__listOption');
     uniqueUstensils.push(tagText);
+    selectedUstensilTags.pop(tagText);
     uniqueUstensils.sort();
   }
 
@@ -85,6 +101,12 @@ export function removeTag() {
   }
   list.insertBefore(listOption, listItems[index]);
   tag.remove();
+
+  console.log(
+    selectedIngredientTags,
+    selectedAppliancesTags,
+    selectedUstensilTags,
+  );
 }
 
 function createTagElements(recipes) {
