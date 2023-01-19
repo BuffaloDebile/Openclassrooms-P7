@@ -1,24 +1,18 @@
 import { recipesArray } from './factory.js';
 import { handleOpenCloseFilters } from './openCloseFilers.js';
-import { addTag, removeTag, createTagElements } from './tags.js';
-import { filterDataVersionOne } from './mainSearch-v1.js';
+import { addTag, removeTag } from './tags.js';
 
-const filterListOfTags = document.querySelectorAll('.filter__listOption');
-const removeTagElement = document.querySelectorAll('.tags__close');
-const mainSearchInput = document.querySelector('.search__input');
+const filterElement = document.querySelectorAll('.filter__listOption');
+const closeTagElement = document.querySelectorAll('.tags__close');
 
-createTagElements(recipesArray);
 handleOpenCloseFilters();
 
 // EVENT LISTENERS
 
-// main search filter algo
-mainSearchInput.addEventListener('input', filterDataVersionOne);
-
-filterListOfTags.forEach((element) => {
+filterElement.forEach((element) => {
   element.addEventListener('click', addTag);
 });
 
-removeTagElement.forEach((closeCross) => {
+closeTagElement.forEach((closeCross) => {
   closeCross.addEventListener('click', removeTag);
 });
