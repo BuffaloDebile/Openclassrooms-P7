@@ -1,8 +1,10 @@
 import { getFoodImage } from './utils.js';
 
 export function createRecipeCard(array) {
+  const cardContainer = document.querySelector('.cards__container');
+  cardContainer.innerHTML = '';
+
   array.forEach((recipe) => {
-    const cardContainer = document.querySelector('.cards__container');
     const card = document.createElement('article');
     card.className = 'card';
 

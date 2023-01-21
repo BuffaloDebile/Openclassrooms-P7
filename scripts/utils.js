@@ -12,6 +12,9 @@ export async function getFoodImage() {
 }
 
 // CAPITALISE THE FIRST LETTER OF WORDs
-export function capitalizeWords(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
+export function capitalizeWords(sentence) {
+  sentence = sentence.toLowerCase();
+  let words = sentence.split(' ');
+  words[0] = words[0][0].toUpperCase() + words[0].slice(1);
+  return words.join(' ');
 }
