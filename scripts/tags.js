@@ -19,7 +19,7 @@ export function addTag() {
   const tagList = document.querySelector('.tags');
   const clickedTagName = this.innerText;
   let color;
-
+ 
   if (this.parentElement.classList.contains('filter__showList--blue')) {
     color = 'blue';
     uniqueIngredients.splice(uniqueIngredients.indexOf(clickedTagName), 1);
