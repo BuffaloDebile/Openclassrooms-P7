@@ -128,7 +128,7 @@ export function createTagElements(recipes) {
   let uniqueIngredients = [],
     uniqueAppliances = [],
     uniqueUstensils = [];
-  // Extract unique ingredients, appliances and utensils from recipes
+  // Extract unique ingredients, appliances and utensils from recipes, also check for duplicates
   recipes.forEach((recipe) => {
     recipe = recipe[0];
     recipe.ingredients.forEach((ingredient) => {
@@ -156,18 +156,59 @@ export function createTagElements(recipes) {
   addTagElements(uniqueIngredients, '.filter__showList--blue');
   addTagElements(uniqueAppliances, '.filter__showList--green');
   addTagElements(uniqueUstensils, '.filter__showList--red');
-}
 
-function addTagElements(tags, className) {
-  const tagList = document.querySelector(className);
-  tagList.innerHTML = ''; // clear the list before adding new tags
-  tags.forEach((tag) => {
-    const tagItem = document.createElement('li');
-    tagItem.classList.add('filter__listOption');
-    tagItem.innerText = tag;
-    tagItem.addEventListener('click', addTag);
-    tagList.appendChild(tagItem);
-  });
+  function addTagElements(tags, className) {
+    const tagList = document.querySelector(className);
+    tagList.innerHTML = ''; // clear the list before adding new tags
+    tags.forEach((tag) => {
+      const tagItem = document.createElement('li');
+      tagItem.classList.add('filter__listOption');
+      tagItem.innerText = tag;
+      tagItem.addEventListener('click', addTag);
+      tagList.appendChild(tagItem);
+    });
+  }
+
+  filteringTagsFunctionality(
+    uniqueIngredients,
+    uniqueAppliances,
+    uniqueUstensils,
+  );
+
+  function filteringTagsFunctionality(
+    uniqueIngredients,
+    uniqueAppliances,
+    uniqueUstensils,
+  ) {
+    const inputBlue = document.querySelector('.filter_input--blue');
+    const inputRed = document.querySelector('.filter_input--red');
+    const inputGreen = document.querySelector('.filter_input--green');
+
+    inputBlue.addEventListener('input', (event) => {
+      const filteredIngredients = uniqueIngredients.filter((ingredient) => {
+        return ingredient
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase());
+      });
+      addTagElements(filteredIngredients, '.filter__showList--blue');
+    });
+    inputRed.addEventListener('input', (event) => {
+      const filteredUstensil = uniqueUstensils.filter((ustensil) => {
+        return ustensil
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase());
+      });
+      addTagElements(filteredUstensil, '.filter__showList--red');
+    });
+    inputGreen.addEventListener('input', (event) => {
+      const filteredAppliance = uniqueAppliances.filter((appliance) => {
+        return appliance
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase());
+      });
+      addTagElements(filteredAppliance, '.filter__showList--green');
+    });
+  }
 }
 
 function filterRecipesByActiveTags(recipesArray, filterArray) {
@@ -193,6 +234,33 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
     );
   });
 
-  createTagElements(filteredRecipesByTags);
   createRecipeCard(filteredRecipesByTags);
+  createTagElements(filteredRecipesByTags);
 }
+
+// function filteringTagsFuncionality() {
+//   const inputBlue = document.querySelector('.filter_input--blue');
+//   const inputRed = document.querySelector('.filter_input--red');
+//   const inputGreen = document.querySelector('.filter_input--green');
+
+//   // Add event listeners for filtering tags
+//   inputBlue.addEventListener('input', (event) => {
+//     const filteredIngredients = uniqueIngredients.filter((ingredient) => {
+//       return ingredient
+//         .toLowerCase()
+//         .includes(event.target.value.toLowerCase());
+//     });
+//   });
+
+//   inputRed.addEventListener('input', (event) => {
+//     const filteredUstensil = uniqueUstensils.filter((ustensil) => {
+//       return ustensil.toLowerCase().includes(event.target.value.toLowerCase());
+//     });
+//   });
+
+//   inputGreen.addEventListener('input', (event) => {
+//     const filteredAppliance = uniqueAppliances.filter((appliance) => {
+//       return appliance.toLowerCase().includes(event.target.value.toLowerCase());
+//     });
+//   });
+// }
