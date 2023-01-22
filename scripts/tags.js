@@ -2,14 +2,14 @@ import { recipesArray } from './factory.js';
 import { capitalizeWords } from './utils.js';
 import { createRecipeCard } from './displayCard.js';
 
-let uniqueIngredients = [];
-let uniqueAppliances = [];
-let uniqueUstensils = [];
+export let uniqueIngredients = [];
+export let uniqueAppliances = [];
+export let uniqueUstensils = [];
 
 let selectedIngredientTags = [];
 let selectedAppliancesTags = [];
 let selectedUstensilTags = [];
-let allSelectedTags = [
+export let allSelectedTags = [
   ...selectedAppliancesTags,
   ...selectedIngredientTags,
   ...selectedUstensilTags,
@@ -24,11 +24,11 @@ export function addTag() {
     color = 'blue';
     uniqueIngredients.splice(uniqueIngredients.indexOf(clickedTagName), 1);
     uniqueIngredients.sort();
-    updateTagList(
-      uniqueIngredients,
-      'ingredientsList',
-      '.filter__showList--blue',
-    );
+    // updateTagList(
+    //   uniqueIngredients,
+    //   'ingredientsList',
+    //   '.filter__showList--blue',
+    // );
     selectedIngredientTags.push(clickedTagName);
     allSelectedTags = [
       ...selectedAppliancesTags,
@@ -39,7 +39,7 @@ export function addTag() {
     color = 'red';
     uniqueUstensils.splice(uniqueUstensils.indexOf(clickedTagName), 1);
     uniqueUstensils.sort();
-    updateTagList(uniqueUstensils, 'ustensilList', '.filter__showList--red');
+    // updateTagList(uniqueUstensils, 'ustensilList', '.filter__showList--red');
     selectedUstensilTags.push(clickedTagName);
     allSelectedTags = [
       ...selectedAppliancesTags,
@@ -50,11 +50,11 @@ export function addTag() {
     color = 'green';
     uniqueAppliances.splice(uniqueAppliances.indexOf(clickedTagName), 1);
     uniqueAppliances.sort();
-    updateTagList(
-      uniqueAppliances,
-      'applianceList',
-      '.filter__showList--green',
-    );
+    // updateTagList(
+    //   uniqueAppliances,
+    //   'applianceList',
+    //   '.filter__showList--green',
+    // );
     selectedAppliancesTags.push(clickedTagName);
     allSelectedTags = [
       ...selectedAppliancesTags,
@@ -94,7 +94,6 @@ export function removeTag() {
       ...selectedIngredientTags,
       ...selectedUstensilTags,
     ];
-    filterRecipesByActiveTags(recipesArray, allSelectedTags);
   } else if (tag.classList.contains('tags__item--green')) {
     list = document.querySelector('.filter__showList--green');
     listItems = list.querySelectorAll('.filter__listOption');
@@ -106,7 +105,6 @@ export function removeTag() {
       ...selectedIngredientTags,
       ...selectedUstensilTags,
     ];
-    filterRecipesByActiveTags(recipesArray, allSelectedTags);
   } else if (tag.classList.contains('tags__item--red')) {
     list = document.querySelector('.filter__showList--red');
     listItems = list.querySelectorAll('.filter__listOption');
@@ -118,7 +116,6 @@ export function removeTag() {
       ...selectedIngredientTags,
       ...selectedUstensilTags,
     ];
-    filterRecipesByActiveTags(recipesArray, allSelectedTags);
   }
 
   const listOption = document.createElement('li');
@@ -135,6 +132,7 @@ export function removeTag() {
   }
   list.insertBefore(listOption, listItems[index]);
   tag.remove();
+  filterRecipesByActiveTags(recipesArray, allSelectedTags);
 }
 
 export function createTagElements(recipes) {
@@ -235,7 +233,7 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
   filterArray = filterArray.map((tag) => tag.toLowerCase().replace(/ /g, ''));
 
   //filter recipes that have intersection of all tags in filterArray
-  const filteredRecipes = recipesArray.filter((recipe) => {
+  const filteredRecipesByTags = recipesArray.filter((recipe) => {
     //lowercase and remove spaces from ingredients, appliance, and ustensils in recipe
     let ingredients = recipe[0].ingredients.map((i) =>
       i.ingredient.toLowerCase().replace(/ /g, ''),
@@ -252,5 +250,6 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
         ustensils.includes(tag),
     );
   });
-  createRecipeCard(filteredRecipes);
+
+  createRecipeCard(filteredRecipesByTags);
 }

@@ -1,4 +1,5 @@
-import { getFoodImage } from './utils.js';
+// import { getFoodImage } from './utils.js';
+// import { createTagElements } from './tags.js';
 
 export function createRecipeCard(array) {
   const cardContainer = document.querySelector('.cards__container');

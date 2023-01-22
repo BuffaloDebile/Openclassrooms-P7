@@ -1,12 +1,6 @@
 import { recipesArray } from './factory.js';
 import { createRecipeCard } from './displayCard.js';
-import {
-  createTagElements,
-  updateTagList,
-  selectedUstensilTags,
-  selectedAppliancesTags,
-  selectedIngredientTags,
-} from './tags.js';
+import { createTagElements } from './tags.js';
 
 const cardContainer = document.querySelector('.cards__container');
 
@@ -39,5 +33,4 @@ export function mainSearchV1(e) {
 
   createRecipeCard(filteredArr);
   createTagElements(filteredArr);
-  updateTagList(filteredArr);
 }
