@@ -15,10 +15,14 @@ export let allSelectedTags = [
   ...selectedUstensilTags,
 ];
 
+let selectedTags = [];
+
 export function addTag() {
   const tagList = document.querySelector('.tags');
   const clickedTagName = this.innerText;
   let color;
+
+  selectedTags.push(clickedTagName);
 
   if (this.parentElement.classList.contains('filter__showList--blue')) {
     color = 'blue';
@@ -72,6 +76,7 @@ export function removeTag() {
   const tagText = tag.firstElementChild.innerText;
   let list = null;
   let listItems = null;
+  selectedTags.pop(tagText);
   if (tag.classList.contains('tags__item--blue')) {
     list = document.querySelector('.filter__showList--blue');
     listItems = list.querySelectorAll('.filter__listOption');
@@ -161,11 +166,13 @@ export function createTagElements(recipes) {
     const tagList = document.querySelector(className);
     tagList.innerHTML = ''; // clear the list before adding new tags
     tags.forEach((tag) => {
-      const tagItem = document.createElement('li');
-      tagItem.classList.add('filter__listOption');
-      tagItem.innerText = tag;
-      tagItem.addEventListener('click', addTag);
-      tagList.appendChild(tagItem);
+      if (!selectedTags.includes(tag)) {
+        const tagItem = document.createElement('li');
+        tagItem.classList.add('filter__listOption');
+        tagItem.innerText = tag;
+        tagItem.addEventListener('click', addTag);
+        tagList.appendChild(tagItem);
+      }
     });
   }
 
@@ -237,30 +244,3 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
   createRecipeCard(filteredRecipesByTags);
   createTagElements(filteredRecipesByTags);
 }
-
-// function filteringTagsFuncionality() {
-//   const inputBlue = document.querySelector('.filter_input--blue');
-//   const inputRed = document.querySelector('.filter_input--red');
-//   const inputGreen = document.querySelector('.filter_input--green');
-
-//   // Add event listeners for filtering tags
-//   inputBlue.addEventListener('input', (event) => {
-//     const filteredIngredients = uniqueIngredients.filter((ingredient) => {
-//       return ingredient
-//         .toLowerCase()
-//         .includes(event.target.value.toLowerCase());
-//     });
-//   });
-
-//   inputRed.addEventListener('input', (event) => {
-//     const filteredUstensil = uniqueUstensils.filter((ustensil) => {
-//       return ustensil.toLowerCase().includes(event.target.value.toLowerCase());
-//     });
-//   });
-
-//   inputGreen.addEventListener('input', (event) => {
-//     const filteredAppliance = uniqueAppliances.filter((appliance) => {
-//       return appliance.toLowerCase().includes(event.target.value.toLowerCase());
-//     });
-//   });
-// }
