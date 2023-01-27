@@ -166,6 +166,7 @@ export function createTagElements(recipes) {
     const tagList = document.querySelector(className);
     tagList.innerHTML = ''; // clear the list before adding new tags
     tags.forEach((tag) => {
+      // Check if tag already exist in the selected tag, if yes it skips it.
       if (!selectedTags.includes(tag)) {
         const tagItem = document.createElement('li');
         tagItem.classList.add('filter__listOption');
@@ -224,7 +225,6 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
 
   //filter recipes that have intersection of all tags in filterArray
   const filteredRecipesByTags = recipesArray.filter((recipe) => {
-    //lowercase and remove spaces from ingredients, appliance, and ustensils in recipe
     let ingredients = recipe[0].ingredients.map((i) =>
       i.ingredient.toLowerCase().replace(/ /g, ''),
     );
