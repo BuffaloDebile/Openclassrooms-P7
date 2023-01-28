@@ -1,6 +1,6 @@
 import { recipesArray } from './factory.js';
 import { capitalizeWords } from './utils.js';
-import { createRecipeCard } from './displayCard.js';
+import { checkIfRecipeIsEmpty, createRecipeCard } from './displayCard.js';
 
 export let uniqueIngredients = [];
 export let uniqueAppliances = [];
@@ -243,4 +243,5 @@ function filterRecipesByActiveTags(recipesArray, filterArray) {
 
   createRecipeCard(filteredRecipesByTags);
   createTagElements(filteredRecipesByTags);
+  checkIfRecipeIsEmpty();
 }
