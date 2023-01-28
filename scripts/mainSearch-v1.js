@@ -1,5 +1,5 @@
 import { recipesArray } from './factory.js';
-import { createRecipeCard } from './displayCard.js';
+import { createRecipeCard, checkIfRecipeIsEmpty } from './displayCard.js';
 import { createTagElements, allSelectedTags } from './tags.js';
 
 const cardContainer = document.querySelector('.cards__container');
@@ -35,5 +35,6 @@ export function mainSearchV1(e) {
 
     createRecipeCard(filteredArr);
     createTagElements(filteredArr);
+    checkIfRecipeIsEmpty();
   }
 }

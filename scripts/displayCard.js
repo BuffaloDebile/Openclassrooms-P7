@@ -51,3 +51,14 @@ export function createRecipeCard(array) {
     cardContainer.appendChild(card);
   });
 }
+
+export function checkIfRecipeIsEmpty() {
+  const cardContainer = document.querySelector('.cards__container');
+  const noRecipes = document.querySelector('.cards__no-recipes');
+
+  if (cardContainer.childNodes.length === 0) {
+    noRecipes.style.display = 'block';
+  } else {
+    noRecipes.style.display = 'none';
+  }
+}
