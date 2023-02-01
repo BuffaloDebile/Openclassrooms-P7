@@ -28,7 +28,7 @@ export function addTag() {
     color = 'blue';
     uniqueIngredients.splice(uniqueIngredients.indexOf(clickedTagName), 1);
     uniqueIngredients.sort();
-    selectedIngredientTags.push(clickedTagName);
+    selectedIngredientTags.push(clickedTagName.toLowerCase());
     allSelectedTags = [
       ...selectedAppliancesTags,
       ...selectedIngredientTags,
@@ -38,7 +38,7 @@ export function addTag() {
     color = 'red';
     uniqueUstensils.splice(uniqueUstensils.indexOf(clickedTagName), 1);
     uniqueUstensils.sort();
-    selectedUstensilTags.push(clickedTagName);
+    selectedUstensilTags.push(clickedTagName.toLowerCase());
     allSelectedTags = [
       ...selectedAppliancesTags,
       ...selectedIngredientTags,
@@ -48,7 +48,7 @@ export function addTag() {
     color = 'green';
     uniqueAppliances.splice(uniqueAppliances.indexOf(clickedTagName), 1);
     uniqueAppliances.sort();
-    selectedAppliancesTags.push(clickedTagName);
+    selectedAppliancesTags.push(clickedTagName.toLowerCase());
     allSelectedTags = [
       ...selectedAppliancesTags,
       ...selectedIngredientTags,

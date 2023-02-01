@@ -10,6 +10,8 @@ export function mainSearchV1(e) {
 
     const searchedString = e.target.value.toLowerCase();
     const searchedWords = searchedString.split(' ');
+    searchedWords.push(...allSelectedTags);
+
     console.log(searchedWords);
 
     const filteredArr = recipesArray.filter((recipe) => {
