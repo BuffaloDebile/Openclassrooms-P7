@@ -8,9 +8,10 @@ export function mainSearchV1(e) {
   if (e.target.value.length >= 3 || e.target.value === '') {
     cardContainer.textContent = '';
 
-    const searchedString = e.target.value.toLowerCase();
-    const searchedWords = searchedString.split(' ');
-    searchedWords.push(...allSelectedTags);
+    const searchedWords = [
+      ...e.target.value.toLowerCase().split(' '),
+      ...allSelectedTags,
+    ];
 
     console.log(searchedWords);
 
