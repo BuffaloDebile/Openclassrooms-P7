@@ -18,11 +18,12 @@ export let allSelectedTags = [
 let selectedTags = [];
 
 export function addTag() {
+  const mainSearchInput = document.querySelector('.search__input');
   const tagList = document.querySelector('.tags');
   const clickedTagName = this.innerText;
   let color;
-
   selectedTags.push(clickedTagName);
+  mainSearchInput.value = '';
 
   if (this.parentElement.classList.contains('filter__showList--blue')) {
     color = 'blue';
@@ -72,11 +73,13 @@ export function addTag() {
 }
 
 export function removeTag() {
+  const mainSearchInput = document.querySelector('.search__input');
   const tag = this;
   const tagText = tag.firstElementChild.innerText;
   let list = null;
   let listItems = null;
   selectedTags.pop(tagText);
+  mainSearchInput.value = '';
   if (tag.classList.contains('tags__item--blue')) {
     list = document.querySelector('.filter__showList--blue');
     listItems = list.querySelectorAll('.filter__listOption');
@@ -220,7 +223,7 @@ export function createTagElements(recipes) {
 }
 
 function filterRecipesByActiveTags(recipesArray, filterArray) {
-  //lowercase and remove spaces from all tags in filterArray
+  //lowercase and remove spaces from all tags in filterArray.toLowerCase()
   filterArray = filterArray.map((tag) => tag.toLowerCase().replace(/ /g, ''));
 
   //filter recipes that have intersection of all tags in filterArray
