@@ -222,7 +222,7 @@ export function createTagElements(recipes) {
   }
 }
 
-function filterRecipesByActiveTags(recipesArray, filterArray) {
+export function filterRecipesByActiveTags(recipesArray, filterArray) {
   //lowercase and remove spaces from all tags in filterArray.toLowerCase()
   filterArray = filterArray.map((tag) => tag.toLowerCase().replace(/ /g, ''));
 
