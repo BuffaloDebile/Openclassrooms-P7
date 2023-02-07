@@ -7,12 +7,11 @@ import {
 } from './tags.js';
 
 const cardContainer = document.querySelector('.cards__container');
+
 export function mainSearchV2(e) {
   let searchedWords = [];
-
-  // create an array of searched words from the input value and all selected tags
   if (e.target.value === '') {
-    searchedWords = allSelectedTags.map((tag) =>
+    searchedWords = [...allSelectedTags].map((tag) =>
       tag.toLowerCase().replace(/ /g, ''),
     );
   } else {
@@ -22,14 +21,17 @@ export function mainSearchV2(e) {
     ];
   }
 
-  // check if the input length is greater than or equal to 3 or if the input is empty
+  console.log(searchedWords);
+
   if (e.target.value.length >= 3 || e.target.value.length === 0) {
-    // clear the content of the card container
     cardContainer.textContent = '';
 
-    // filter recipesArray and return recipes that match the searched words
-    let filteredArr = recipesArray.filter((recipe) => {
-      recipe = recipe[0];
+    // Initialize the filtered array
+    let filteredArr = [];
+
+    // Search the recipesArray and add matching recipes to the filtered array
+    for (let i = 0; i < recipesArray.length; i++) {
+      let recipe = recipesArray[i][0];
 
       // create an object of different search types (name, description, ingredients)
       const searchTypes = {
@@ -44,37 +46,37 @@ export function mainSearchV2(e) {
         ),
       };
 
-      // return true if ALL searched words are found in the searchTypes object
-      return searchedWords.every((word) => {
+      // check if all searched words are found in the searchTypes object
+      let isMatch = true;
+      for (let j = 0; j < searchedWords.length; j++) {
+        let word = searchedWords[j];
+        let found = false;
+        // loop through all properties of the `searchTypes` object
         for (const prop in searchTypes) {
+          // check if the current word is found in the property
           if (searchTypes[prop].includes(word)) {
-            return true;
+            found = true;
+            break;
           }
         }
-        return false;
-      });
-    });
-
-    // Loop through all elements in the filteredArr array
-    for (let i = 0; i < filteredArr.length - 1; i++) {
-      // Loop through elements from 0
-      for (let j = 0; j < filteredArr.length - i - 1; j++) {
-        // Compare the current element with the next element
-        if (filteredArr[j][0].name > filteredArr[j + 1][0].name) {
-          // If the current element is greater than the next element, swap their positions in the array
-          [filteredArr[j], filteredArr[j + 1]] = [
-            filteredArr[j + 1],
-            filteredArr[j],
-          ];
+        // if the current word is not found, set `isMatch` to false and break out of the loop
+        if (!found) {
+          isMatch = false;
+          break;
         }
+      }
+
+      // if a match is found for all searched words, add the recipe to the filtered array
+      if (isMatch) {
+        filteredArr.push(recipesArray[i]);
       }
     }
 
-    // create recipe cards for the filtered and sorted recipes
+    // create recipe cards for the filtered recipes
     createRecipeCard(filteredArr);
-    // create tag elements for the filtered and sorted recipes
+    // create tag elements for the filtered recipes
     createTagElements(filteredArr);
-    // filter the sorted array filteredArr again according to the selected tags
+    // filter the array filteredArr again according to the selected tags
     filterRecipesByActiveTags(filteredArr, allSelectedTags);
 
     // check if there are no recipes found and display message
