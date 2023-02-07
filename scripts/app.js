@@ -1,7 +1,7 @@
 import { recipesArray } from './factory.js';
 import { handleOpenCloseFilters } from './openCloseFilers.js';
 import { addTag, removeTag, createTagElements } from './tags.js';
-import { mainSearchV1 } from './mainSearch-v1.js';
+import { mainSearchV2 } from './mainSearch-v2.js';
 
 const filterElement = document.querySelectorAll('.filter__listOption');
 const closeTagElement = document.querySelectorAll('.tags__close');
@@ -13,7 +13,7 @@ createTagElements(recipesArray);
 
 // EVENT LISTENERS
 
-mainSearchBar.addEventListener('input', mainSearchV1);
+mainSearchBar.addEventListener('input', mainSearchV2);
 
 filterElement.forEach((element) => {
   element.addEventListener('click', addTag);
