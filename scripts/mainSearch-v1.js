@@ -21,8 +21,6 @@ export function mainSearchV1(e) {
     ];
   }
 
-  console.log(searchedWords);
-
   if (e.target.value.length >= 3 || e.target.value.length === 0) {
     cardContainer.textContent = '';
 
