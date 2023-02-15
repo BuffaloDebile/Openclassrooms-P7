@@ -49,6 +49,7 @@ export function mainSearchV2(e) {
       for (let j = 0; j < searchedWords.length; j++) {
         let word = searchedWords[j];
         let found = false;
+
         // loop through all properties of the `searchTypes` object
         for (const prop in searchTypes) {
           // check if the current word is found in the property
@@ -57,6 +58,7 @@ export function mainSearchV2(e) {
             break;
           }
         }
+
         // if the current word is not found, set `isMatch` to false and break out of the loop
         if (!found) {
           isMatch = false;
