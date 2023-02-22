@@ -1,5 +1,4 @@
-// import { getFoodImage } from './utils.js';
-// import { createTagElements } from './tags.js';
+import { getFoodImage } from './utils.js';
 
 export function createRecipeCard(array) {
   const cardContainer = document.querySelector('.cards__container');
@@ -44,9 +43,9 @@ export function createRecipeCard(array) {
   </a>
     `;
 
-    // getFoodImage().then((imageUrl) => {
-    //   card.querySelector('img').src = imageUrl;
-    // });
+    getFoodImage().then((imageUrl) => {
+      card.querySelector('img').src = imageUrl;
+    });
 
     cardContainer.appendChild(card);
   });

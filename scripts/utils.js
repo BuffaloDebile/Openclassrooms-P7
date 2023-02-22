@@ -1,13 +1,23 @@
 // GET A RANDOM FOOD IMAGE
+
+let cachedFoodImage;
+
 export async function getFoodImage() {
+  if (cachedFoodImage) {
+    return cachedFoodImage;
+  }
+
   try {
     const response = await fetch(
       'https://www.themealdb.com/api/json/v1/1/random.php',
     );
     const data = await response.json();
-    return data.meals[0].strMealThumb;
+    const imageUrl = data.meals[0].strMealThumb;
+    cachedFoodImage = imageUrl; // Cache the image URL
+    return imageUrl;
   } catch (error) {
-    return console.log(error);
+    console.error(error);
+    return null;
   }
 }
 
